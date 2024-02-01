@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    .error {
+      color: red;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      font-size: 12px;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #555;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #333; /* Set text color for input fields */
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #2181b5;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <h2>Registration Form</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <div class="error" id="nameError"></div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <div class="error" id="passwordError"></div>
+
+    <!-- Rest of your form fields -->
+    <label for="email">E-mail ID:</label>
+    <input type="text" id="email" name="email" required>
+    <div class="error" id="emailError"></div>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required>
+    <div class="error" id="phoneError"></div>
+
+    <label style="display: flex;">Sex:
+      <input style="justify-content: space-around;" type="radio" id="male" name="sex" value="male" required>
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="sex" value="female" required>
+      
+      <label for="female">Female</label>
+      
+    </label>
+    <label for="birth">DOB:</label>
+    <input type="date" id="birth" name="birth">
+
+    <label style="display: flex;">Languages Known:
+        <input style="justify-content: space-around;" type="checkbox" id="english" name="languages[]" value="english">
+    <label for="english">English</label>
+    <input type="checkbox" id="telugu" name="languages[]" value="telugu">
+    <label for="telugu">Telugu</label>
+    <input type="checkbox" id="hindi" name="languages[]" value="hindi">
+    <label for="hindi">Hindi</label>
+    <input type="checkbox" id="tamil" name="languages[]" value="tamil">
+    <label for="tamil">Tamil</label>
+    </label>
+    
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea>
+
+    <button type="button" onclick="validateForm()">Sign Up</button>
+  </form>
+
+  <script>
+    
+    function validateForm() {
+      const name = document.getElementById('name').value;
+      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      // Name validation
+      const nameRegex = /^[a-zA-Z]{6,}$/;
+      if (!nameRegex.test(name)) {
+        document.getElementById('nameError').innerText = 'Name should contain alphabets and the length should not be less than 6 characters.';
+        return;
+      } else {
+        document.getElementById('nameError').innerText = '';
+      }
+
+      // Password validation
+      if (password.length < 6) {
+        document.getElementById('passwordError').innerText = 'Password should not be less than 6 characters.';
+        return;
+      } else {
+        document.getElementById('passwordError').innerText = '';
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').innerText = 'Invalid email format. Please use the standard pattern (name@domain.com).';
+        return;
+      } else {
+        document.getElementById('emailError').innerText = '';
+      }
+
+      // Phone number validation
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone)) {
+        document.getElementById('phoneError').innerText = 'Phone number should contain 10 digits only.';
+        return;
+      } else {
+        document.getElementById('phoneError').innerText = '';
+      }
+
+      // If all validations pass, you can proceed with submitting the form or any other action.
+      alert('Signup successful!');
+    }
+  
+  </script>
+
+</body>
+</html>
